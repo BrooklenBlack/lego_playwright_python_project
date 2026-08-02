@@ -1,5 +1,3 @@
-from tkinter import dialog
-
 from playwright.sync_api import Page
 from utils.config import LEGO_BASE_URL
 
@@ -44,17 +42,39 @@ class LoginPage:
     def click_forgot_password(self):
         self.page.get_by_role("link", name="Forgot your password?").click()
 
-    def create_account(self):
-        self.page.get_by_role("link", name="Become a member").click()
+    def click_modal_create_account(self):
+        self.page.locator("dialog[open]").get_by_text("Become a member", exact=True).click()
+
+    def navigate_to_create_account(self):
+        self.load_welcome()
+        self.click_continue()
+        self.accept_cookies()
+        self.click_sign_in()
+        self.click_modal_create_account()
 
     def open_country_dropdown(self):
-        self.page.locator(".country-search-input").click()
+        country = self.page.get_by_test_id("country")
+        country.focus()
+        country.press("Space")
 
-    def click_country(self, country:str):
-        option = self.page.get_by_role("", has_text=country).first
-        option.scroll_into_view_if_needed()
-        option.click
+    def select_country(self, country: str):
+        self.page.get_by_role("button", name=country).click()
 
-    
+    def open_state_dropdown(self):
+        state = self.page.get_by_test_id("countrySubdivision")
+        state.focus()
+        state.press("Space")
+
+    def select_state(self, state: str):
+        self.page.get_by_role("option", name=state).click()
+
+    def enter_birth_day(self, day: str):
+        self.page.get_by_test_id("dob-day").fill(day)
+
+    def enter_birth_month(self, month: str):
+        self.page.get_by_test_id("dob-month").fill(month)
+
+    def enter_birth_year(self, year: str):
+        self.page.get_by_test_id("dob-year").fill(year)
 
     
