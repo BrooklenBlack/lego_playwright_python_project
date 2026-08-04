@@ -1,12 +1,12 @@
 from playwright.sync_api import Page
-from utils.config import LEGO_BASE_URL
+from utils.config import LEGO_BASE_URL, LEGO_LOGIN_URL
 
 class LoginPage:
-    def __init__(self, page:Page):
+    def __init__(self, page: Page):
         self.page = page
     
     def load_welcome(self):
-        self.page.goto(f"{LEGO_BASE_URL}")
+        self.page.goto(LEGO_BASE_URL)
 
     def click_continue(self):
         self.page.get_by_role("button", name="Continue", exact=True).click()
@@ -15,7 +15,7 @@ class LoginPage:
         self.page.get_by_role("button", name="Accept All").click()
 
     def load_login(self):
-        self.page.goto(f"{LEGO_BASE_URL}/login")
+        self.page.goto(LEGO_LOGIN_URL)
 
     def navigate_to_login(self):
         self.load_welcome()
@@ -24,10 +24,10 @@ class LoginPage:
         self.click_sign_in()
         self.click_modal_sign_in()
 
-    def enter_email(self, email:str):
+    def enter_email(self, email: str):
         self.page.get_by_role("textbox", name="Email or username").first.fill(email)
 
-    def enter_password(self, password:str):
+    def enter_password(self, password:  str):
         self.page.locator('input[type="password"]').fill(password)
 
     def click_sign_in(self):
