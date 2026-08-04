@@ -1,6 +1,6 @@
-# LEGO Login Test Automation Project
+# LEGO Playwright Test Automation Project
 
-This project is a Playwright test automation framework built with Python and pytest to test the LEGO authentication and account creation flows.
+This project is a Playwright test automation framework built with Python and pytest to automate and validate LEGO authentication and account creation workflows.
 
 The goal of this project was to practice UI automation, Page Object Model design, and validating different user scenarios including successful login, negative login cases, and account creation navigation.
 
@@ -15,15 +15,18 @@ The goal of this project was to practice UI automation, Page Object Model design
 
 The test suite covers:
 
+### Authentication
 - Welcome page loads successfully
 - User can continue past the welcome banner
 - Login page loads successfully
-- User can log in with valid credentials
-- Invalid credentials show an error message
+- Successful login with valid credentials
+- Invalid credentials validation
 - Empty password validation
 - Forgot username navigation
 - Forgot password navigation
 - Apple authentication redirect
+
+### Account Creation
 - Create account page loads successfully
 - Country selection
 - State selection
@@ -152,6 +155,6 @@ Planned additions to expand test coverage:
 - Add checkout flow testing up to the payment step
 - Add additional account creation validation scenarios
 - Add more negative test cases for user inputs
-- Improve test isolation for repeated test executions
+- Improve test isolation and state management for repeated test executions
 - Add CI/CD integration using GitHub Actions
 - Add additional reporting and test artifacts
