@@ -141,3 +141,16 @@ python -m pytest
 - Credentials are handled through environment variables and excluded from version control.
 - The framework handles dynamic web components including modal dialogs and custom dropdown menus.
 - Successful login testing validates navigation to the LEGO identity service because the authentication flow includes MFA.
+
+## Future Work
+
+Planned additions to expand test coverage:
+
+- Add product search functionality tests
+- Add product page validation tests
+- Add adding items to cart functionality
+- Add cart quantity and item removal tests
+- Add checkout flow testing up to the payment step
+- Add additional account creation validation scenarios
+- Add more negative test cases for user inputs
+- Add CI/CD integration for automated test execution
