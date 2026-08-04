@@ -148,9 +148,10 @@ Planned additions to expand test coverage:
 
 - Add product search functionality tests
 - Add product page validation tests
-- Add adding items to cart functionality
-- Add cart quantity and item removal tests
+- Add shopping cart tests, including adding items, updating quantities, and removing items
 - Add checkout flow testing up to the payment step
 - Add additional account creation validation scenarios
 - Add more negative test cases for user inputs
-- Add CI/CD integration for automated test execution
+- Improve test isolation for repeated test executions
+- Add CI/CD integration using GitHub Actions
+- Add additional reporting and test artifacts
