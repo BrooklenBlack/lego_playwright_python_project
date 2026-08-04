@@ -27,7 +27,7 @@ class LoginPage:
     def enter_email(self, email: str):
         self.page.get_by_role("textbox", name="Email or username").first.fill(email)
 
-    def enter_password(self, password:  str):
+    def enter_password(self, password: str):
         self.page.locator('input[type="password"]').fill(password)
 
     def click_sign_in(self):
