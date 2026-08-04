@@ -52,8 +52,8 @@ lego_playwright_project/
 Clone the repository:
 
 ```bash
-git clone https://github.com/BrooklenBlack/lego_playwright_project.git
-cd lego_playwright_project
+git clone https://github.com/BrooklenBlack/lego_playwright_python_project.git
+cd lego_playwright_python_project
 ```
 
 Create a virtual environment:
@@ -98,6 +98,7 @@ Example:
 LEGO_EMAIL=
 LEGO_PASSWORD=
 LEGO_BASE_URL=https://www.lego.com/en-us
+LEGO_LOGIN_URL=https://identity.lego.com/en-US/login
 ```
 
 Credentials are stored using environment variables and should not be committed to GitHub.
