@@ -17,6 +17,11 @@ class LoginPage:
     def load_login(self):
         self.page.goto(LEGO_LOGIN_URL)
 
+    def navigate_past_banner(self):
+        self.load_welcome()
+        self.click_continue()
+        self.accept_cookies()
+
     def navigate_to_login(self):
         self.load_welcome()
         self.click_continue()
