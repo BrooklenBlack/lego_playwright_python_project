@@ -2,7 +2,7 @@ from pages.product import ProductPage
 from playwright.sync_api import expect
 
 
-""" def test_shop_menu_opens(page):
+def test_shop_menu_opens(page):
     product_page = ProductPage(page)
     product_page.navigate_to_product_lists()
 
@@ -93,7 +93,7 @@ def test_shop_menu_navigates_to_retiring_soon(page):
     product_page.click_retiring_soon()
 
     expect(page.get_by_role("Heading", name="LEGO Sets Retiring Soon")).to_be_visible()
-    expect(page).to_have_url("https://www.lego.com/en-us/categories/last-chance-to-buy") """
+    expect(page).to_have_url("https://www.lego.com/en-us/categories/last-chance-to-buy")
 
 def test_shop_menu_navigates_to_retiring_soon_product(page):
     product_page = ProductPage(page)
