@@ -31,6 +31,20 @@ class ProductPage:
     def click_new(self):
         self.page.get_by_role("link", name="New").nth(1).click()
 
+    def scroll_to_load_more(self):
+        self.page.get_by_role("link", name="Load More").scroll_into_view_if_needed()
+
+    def click_load_more(self):
+        self.page.get_by_role("link", name="Load More").click()
+
+    def find_product(self, product_name: str):
+        product = self.page.locator('[data-test="product-leaf-title"]').filter(has_text=product_name)
+        product.scroll_into_view_if_needed()
+        return product
+
+    def click_product(self, product_name: str):
+        self.find_product(product_name).click()
+
     def click_retiring_soon(self):
         self.page.get_by_role("link", name="Retiring soon").click()
 
