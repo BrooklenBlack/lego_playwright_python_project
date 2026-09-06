@@ -81,7 +81,7 @@ def test_shop_menu_navigates_to_all_ages(page):
     navigation.click_sets_by_age()   
     navigation.click_ages("All Ages")
 
-    expect(page.get_by_role("heading", name="LEGO® Sets By Age Range and Gifts for All Ages")).to_be_visible()
+    expect(page.get_by_role("heading", name="Age")).to_be_visible()
     expect(page).to_have_url("https://www.lego.com/en-us/age")
 
 def test_shop_menu_navigates_to_new_products(page):

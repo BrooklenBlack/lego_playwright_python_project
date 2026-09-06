@@ -32,7 +32,7 @@ class NavigationPage:
         self.page.get_by_role("link", name=age).click()
         
     def click_new(self):
-        self.page.get_by_role("link", name="New").nth(1).click()
+        self.page.locator('[data-test="navigation-submenu-link"]').filter(has_text="New").click()
 
     def click_retiring_soon(self):
         self.page.get_by_role("link", name="Retiring soon").click()

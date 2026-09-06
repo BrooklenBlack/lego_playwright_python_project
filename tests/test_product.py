@@ -25,14 +25,11 @@ def test_new_product_navigation_after_loading_more(page):
     product_page.scroll_to_load_more()
     product_page.click_load_more()
 
-    product_page.scroll_to_load_more()
-    product_page.click_load_more()
+    product_page.find_product("Jaguar E-Type")
+    product_page.click_product("Jaguar E-Type")
 
-    product_page.find_product("Kakamora")
-    product_page.click_product("Kakamora")
-
-    expect(page).to_have_url("https://www.lego.com/en-us/product/kakamora-43293")
-    expect(page.locator('[data-test="product-overview-name"]')).to_have_text("Kakamora")
+    expect(page).to_have_url("https://www.lego.com/en-us/product/jaguar-e-type-11381")
+    expect(page.locator('[data-test="product-overview-name"]')).to_have_text("Jaguar E-Type")
 
 def test_shop_menu_navigates_to_retiring_soon_product(page):
     navigation = NavigationPage(page)
