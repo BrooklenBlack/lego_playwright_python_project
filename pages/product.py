@@ -17,3 +17,12 @@ class ProductPage:
 
     def click_product(self, product_name: str):
         self.find_product(product_name).click()
+
+    def get_product_image(self):
+        return self.page.locator('[data-test="mediagallery-image-0"]')
+
+    def get_product_price(self):
+        return self.page.locator('[data-test="product-price-display-price"]').first
+
+    
+

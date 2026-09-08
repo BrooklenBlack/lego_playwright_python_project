@@ -25,8 +25,14 @@ class NavigationPage:
     def click_technic(self):
         self.page.get_by_role("link", name="Technic").click()
 
+    def click_lego_icons(self):
+        self.page.get_by_role("link", name="LEGO® Icons").click()
+
     def click_sets_by_age(self):
         self.page.get_by_role("button", name="Age").click()
+
+    def click_see_all_ages(self):
+        self.page.get_by_text("SEE ALL AGES", exact=True).click()
 
     def click_ages(self, age: str):
         self.page.get_by_role("link", name=age).click()
@@ -36,3 +42,6 @@ class NavigationPage:
 
     def click_retiring_soon(self):
         self.page.get_by_role("link", name="Retiring soon").click()
+
+    """ def click_search(self):
+        self.page.locator('[data-test="search-input-button"]').last.click() """
