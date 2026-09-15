@@ -82,4 +82,8 @@ class LoginPage:
     def enter_birth_year(self, year: str):
         self.page.get_by_test_id("dob-year").fill(year)
 
+    def close_survey(self):
+            if self.page.locator("#noButton").is_visible():
+                self.page.locator("#noButton").click()
+
     

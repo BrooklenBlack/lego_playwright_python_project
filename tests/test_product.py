@@ -1,5 +1,7 @@
 from pages.navigation import NavigationPage
 from pages.product import ProductPage
+from pages.cart import CartPage
+from pages.login import LoginPage
 from playwright.sync_api import expect
 
 
@@ -71,13 +73,77 @@ def test_product_price_is_visible(page):
 
     expect(product_page.get_product_price()).to_be_visible()
 
-""" def test_product_search_clicks(page):
+def test_product_search(page):
     navigation = NavigationPage(page)
 
     navigation.login_page.navigate_past_banner()
-    navigation.click_search()
+    navigation.click_search("Rivendell")
+   
+    expect(page.locator('[data-test="search-input-field"]')).to_have_value("Rivendell")
 
-    expect(page.locator('[data-test="search-input-button"]')).to_be_focused() """
+def test_product_search_navigates_to_product(page):
+    navigation = NavigationPage(page)
+    product_page = ProductPage(page)
+
+    navigation.login_page.navigate_past_banner()
+    navigation.click_search("Rivendell")
+
+    product_page.find_product("THE LORD OF THE RINGS: RIVENDELL™")
+    product_page.click_product("THE LORD OF THE RINGS: RIVENDELL™")
+
+    expect(page).to_have_url("https://www.lego.com/en-us/product/the-lord-of-the-rings-rivendell-10316")
 
 
+def test_add_product_to_cart(page):
+    navigation = NavigationPage(page)
+    product_page = ProductPage(page)
+    cart_page = CartPage(page)    
 
+    navigation.login_page.navigate_past_banner()
+    navigation.click_search("Rivendell")
+
+    navigation.login_page.close_survey()
+
+    product_page.find_product("THE LORD OF THE RINGS: RIVENDELL™")
+    product_page.click_product("THE LORD OF THE RINGS: RIVENDELL™")
+
+    product_page.click_add_to_bag()
+    product_page.click_view_my_bag()
+
+    expect(cart_page.get_product_quantity("THE LORD OF THE RINGS: RIVENDELL™")).to_have_value("1")
+
+def test_correct_product_added_to_cart(page):
+    navigation = NavigationPage(page)
+    product_page = ProductPage(page)
+    cart_page = CartPage(page)
+
+    navigation.login_page.navigate_past_banner()
+    navigation.click_search("Rivendell")
+
+    product_page.find_product("THE LORD OF THE RINGS: RIVENDELL™")
+    product_page.click_product("THE LORD OF THE RINGS: RIVENDELL™")
+
+    navigation.login_page.close_survey()
+
+    product_page.click_add_to_bag()
+    product_page.click_view_my_bag()
+
+    expect(cart_page.get_product_name()).to_have_text("THE LORD OF THE RINGS: RIVENDELL™")
+
+def test_remove_product_from_cart(page):
+    navigation = NavigationPage(page)
+    product_page = ProductPage(page)
+    cart_page = CartPage(page)
+
+    navigation.login_page.navigate_past_banner()
+    navigation.click_search("Rivendell")
+
+    product_page.find_product("THE LORD OF THE RINGS: RIVENDELL™")
+    product_page.click_product("THE LORD OF THE RINGS: RIVENDELL™")
+
+    product_page.click_add_to_bag()
+    product_page.click_view_my_bag()
+
+    cart_page.remove_product()
+
+    expect(page.locator("h1").filter(has_text="You don't have anything in your bag")).to_be_visible()

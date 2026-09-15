@@ -1,4 +1,5 @@
 from playwright.sync_api import Page
+from pytest_playwright.pytest_playwright import page
 from pages.login import LoginPage
 
 class NavigationPage:
@@ -43,5 +44,7 @@ class NavigationPage:
     def click_retiring_soon(self):
         self.page.get_by_role("link", name="Retiring soon").click()
 
-    """ def click_search(self):
-        self.page.locator('[data-test="search-input-button"]').last.click() """
+    def click_search(self, search_term: str):
+        self.page.locator('[data-test="search-input-field"]').fill(search_term)
+        self.page.locator('[data-test="search-input-field"]').press("Enter")
+
