@@ -7,6 +7,7 @@ class LoginPage:
     
     def load_welcome(self):
         self.page.goto(LEGO_BASE_URL)
+        self.page.get_by_role("button", name="Continue", exact=True).wait_for()
 
     def click_continue(self):
         self.page.get_by_role("button", name="Continue", exact=True).click()
@@ -26,7 +27,7 @@ class LoginPage:
         self.load_welcome()
         self.click_continue()
         self.accept_cookies()
-        self.click_sign_in()
+        self.click_sign_up()
         self.click_modal_sign_in()
 
     def enter_email(self, email: str):
@@ -34,6 +35,9 @@ class LoginPage:
 
     def enter_password(self, password: str):
         self.page.locator('input[type="password"]').fill(password)
+
+    def click_sign_up(self):
+        self.page.get_by_role("button", name="Sign Up").first.click()
 
     def click_sign_in(self):
         self.page.get_by_role("button", name="Sign In").first.click()
@@ -54,7 +58,7 @@ class LoginPage:
         self.load_welcome()
         self.click_continue()
         self.accept_cookies()
-        self.click_sign_in()
+        self.click_sign_up()
         self.click_modal_create_account()
 
     def open_country_dropdown(self):

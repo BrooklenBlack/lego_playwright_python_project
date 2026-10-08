@@ -17,6 +17,9 @@ class NavigationPage:
     def click_sets_by_theme(self):
         self.page.get_by_role("button", name="Sets by theme").click()
 
+    def click_view_all_themes(self):
+        self.page.get_by_role("link", name="View Sets by theme").click()
+
     def click_botanicals(self):
         self.page.get_by_role("link", name="Botanicals").click()
     
@@ -33,18 +36,21 @@ class NavigationPage:
         self.page.get_by_role("button", name="Age").click()
 
     def click_see_all_ages(self):
-        self.page.get_by_text("SEE ALL AGES", exact=True).click()
+        self.page.get_by_role("link", name="SEE ALL AGES").click()
 
     def click_ages(self, age: str):
-        self.page.get_by_role("link", name=age).click()
+        return self.page.locator('[data-navigation-section-id="blt0ea34b527fb8f037"]').get_by_role("link", name=age)
         
     def click_new(self):
-        self.page.locator('[data-test="navigation-submenu-link"]').filter(has_text="New").click()
+        self.page.get_by_role("toolbar").get_by_role("link", name="New").click()
 
     def click_retiring_soon(self):
         self.page.get_by_role("link", name="Retiring soon").click()
 
     def click_search(self, search_term: str):
-        self.page.locator('[data-test="search-input-field"]').fill(search_term)
-        self.page.locator('[data-test="search-input-field"]').press("Enter")
+        search = self.page.get_by_role("combobox", name="Search")
+        search.wait_for()
+        search.click()
+        search.fill(search_term)
+        search.press("Enter")
 

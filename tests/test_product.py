@@ -15,6 +15,8 @@ def test_new_page_loads_more_products(page):
     product_page.scroll_to_load_more()
     product_page.click_load_more()
 
+    navigation.login_page.close_survey()
+
     expect(page).to_have_url("https://www.lego.com/en-us/categories/new-sets-and-products?page=2")
 
 def test_new_product_navigation_after_loading_more(page):
@@ -27,11 +29,11 @@ def test_new_product_navigation_after_loading_more(page):
     product_page.scroll_to_load_more()
     product_page.click_load_more()
 
-    product_page.find_product("Jaguar E-Type")
-    product_page.click_product("Jaguar E-Type")
+    product_page.find_product("Gustav Klimt – The Kiss")
+    product_page.click_product("Gustav Klimt – The Kiss")
 
-    expect(page).to_have_url("https://www.lego.com/en-us/product/jaguar-e-type-11381")
-    expect(page.locator('[data-test="product-overview-name"]')).to_have_text("Jaguar E-Type")
+    expect(page).to_have_url("https://www.lego.com/en-us/product/gustav-klimt-the-kiss-31221")
+    expect(page.locator('[data-test="product-overview-name"]')).to_have_text("Gustav Klimt – The Kiss")
 
 def test_shop_menu_navigates_to_retiring_soon_product(page):
     navigation = NavigationPage(page)
@@ -40,10 +42,17 @@ def test_shop_menu_navigates_to_retiring_soon_product(page):
     navigation.navigate_to_product_lists()
 
     navigation.click_retiring_soon()
-    product_page.find_product("Fawkes™: Dumbledore's Phoenix")
-    product_page.click_product("Fawkes™: Dumbledore's Phoenix")
 
-    expect(page).to_have_url("https://www.lego.com/en-us/product/fawkes-dumbledores-phoenix-76448")
+    product_page.scroll_to_load_more()
+    product_page.click_load_more()
+
+    product_page.scroll_to_load_more()
+    product_page.click_load_more()
+
+    product_page.find_product("Flower Bouquet")
+    product_page.click_product("Flower Bouquet")
+
+    expect(page).to_have_url("https://www.lego.com/en-us/product/flower-bouquet-10280")
 
 def test_product_image_is_visible(page):
     navigation = NavigationPage(page)
@@ -53,6 +62,11 @@ def test_product_image_is_visible(page):
 
     navigation.click_sets_by_theme()
     navigation.click_lego_icons()
+
+    navigation.login_page.close_survey()
+
+    product_page.scroll_to_load_more()
+    product_page.click_load_more()
 
     product_page.find_product("THE LORD OF THE RINGS: RIVENDELL™")
     product_page.click_product("THE LORD OF THE RINGS: RIVENDELL™")
@@ -68,6 +82,11 @@ def test_product_price_is_visible(page):
     navigation.click_sets_by_theme()
     navigation.click_lego_icons()
 
+    navigation.login_page.close_survey()
+
+    product_page.scroll_to_load_more()  
+    product_page.click_load_more()
+
     product_page.find_product("THE LORD OF THE RINGS: RIVENDELL™")
     product_page.click_product("THE LORD OF THE RINGS: RIVENDELL™")
 
@@ -78,8 +97,10 @@ def test_product_search(page):
 
     navigation.login_page.navigate_past_banner()
     navigation.click_search("Rivendell")
+
+    navigation.login_page.close_survey()
    
-    expect(page.locator('[data-test="search-input-field"]')).to_have_value("Rivendell")
+    expect(page).to_have_url("https://www.lego.com/en-us/search?q=Rivendell")
 
 def test_product_search_navigates_to_product(page):
     navigation = NavigationPage(page)
@@ -87,6 +108,8 @@ def test_product_search_navigates_to_product(page):
 
     navigation.login_page.navigate_past_banner()
     navigation.click_search("Rivendell")
+
+    navigation.login_page.close_survey()
 
     product_page.find_product("THE LORD OF THE RINGS: RIVENDELL™")
     product_page.click_product("THE LORD OF THE RINGS: RIVENDELL™")
@@ -106,6 +129,8 @@ def test_add_product_to_cart(page):
 
     product_page.find_product("THE LORD OF THE RINGS: RIVENDELL™")
     product_page.click_product("THE LORD OF THE RINGS: RIVENDELL™")
+
+    page.wait_for_url("**/product/the-lord-of-the-rings-rivendell-10316")
 
     product_page.click_add_to_bag()
     product_page.click_view_my_bag()
@@ -137,6 +162,8 @@ def test_remove_product_from_cart(page):
 
     navigation.login_page.navigate_past_banner()
     navigation.click_search("Rivendell")
+
+    navigation.login_page.close_survey()
 
     product_page.find_product("THE LORD OF THE RINGS: RIVENDELL™")
     product_page.click_product("THE LORD OF THE RINGS: RIVENDELL™")

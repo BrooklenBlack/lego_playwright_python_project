@@ -16,7 +16,7 @@ def test_continuing_after_banner(page):
     login_page.click_continue()
     login_page.accept_cookies()
 
-    page.wait_for_load_state("networkidle")
+    #page.wait_for_load_state("networkidle")
 
     expect(page).to_have_url(LEGO_BASE_URL)
 
