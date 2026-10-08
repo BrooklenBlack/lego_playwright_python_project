@@ -1,46 +1,75 @@
 # LEGO Playwright Test Automation Project
 
-This project is a Playwright test automation framework built with Python and pytest to automate and validate LEGO authentication and account creation workflows.
+This project is a Playwright test automation framework built with Python and pytest to automate and validate LEGO website workflows.
 
-The goal of this project was to practice UI automation, Page Object Model design, and validating different user scenarios including successful login, negative login cases, and account creation navigation.
+The goal of this project was to practice UI automation, Page Object Model design, test case development, and validating different user scenarios across authentication, account creation, navigation, product search, product pages, and shopping cart functionality.
 
 ## Tech Stack
 
-- Python
-- Playwright
-- pytest
-- python-dotenv
+* Python
+* Playwright
+* pytest
+* python-dotenv
 
 ## Test Coverage
 
 The test suite covers:
 
 ### Authentication
-- Welcome page loads successfully
-- User can continue past the welcome banner
-- Login page loads successfully
-- Successful login with valid credentials
-- Invalid credentials validation
-- Empty password validation
-- Forgot username navigation
-- Forgot password navigation
-- Apple authentication redirect
+
+* Welcome page loads successfully
+* User can continue past the welcome banner
+* Login page loads successfully
+* Successful login with valid credentials
+* Invalid credentials validation
+* Empty password validation
+* Forgot username navigation
+* Forgot password navigation
+* Apple authentication redirect
 
 ### Account Creation
-- Create account page loads successfully
-- Country selection
-- State selection
-- Birthday field entry
-- Create account flow navigation
+
+* Create account page loads successfully
+* Country selection
+* State selection
+* Birthday field entry
+* Create account flow navigation
+
+### Navigation
+
+* Shop menu navigation
+* Sets by theme navigation
+* Sets by age navigation
+* New products navigation
+* Retiring soon navigation
+* Search functionality
+
+### Product
+
+* Product search
+* Product selection
+* Load more products
+* Product page navigation
+* Add product to shopping cart
+
+### Shopping Cart
+
+* Verify the correct product is added to the cart
+* Remove product from cart
 
 ## Project Structure
 
-```
-lego_playwright_project/
+```text
+lego_playwright_python_project/
 ├── pages/
-│   └── login.py
+│   ├── login.py
+│   ├── navigation.py
+│   ├── product.py
+│   └── cart.py
 ├── tests/
-│   └── test_login.py
+│   ├── test_login.py
+│   ├── test_navigation.py
+│   └── test_product.py
 ├── utils/
 │   └── config.py
 ├── .env.example
@@ -126,7 +155,7 @@ python -m pytest --headed --slowmo 500
 2. Install the Python extension.
 3. Select the project virtual environment:
 
-```
+```text
 Ctrl + Shift + P
 Python: Select Interpreter
 ```
@@ -140,21 +169,23 @@ python -m pytest
 
 ## Notes
 
-- This project uses the Page Object Model (POM) to separate page interactions from test logic.
-- Credentials are handled through environment variables and excluded from version control.
-- The framework handles dynamic web components including modal dialogs and custom dropdown menus.
-- Successful login testing validates navigation to the LEGO identity service because the authentication flow includes MFA.
+* This project uses the Page Object Model (POM) to separate page interactions from test logic.
+* Credentials are handled through environment variables and excluded from version control.
+* The framework uses Playwright locators based on roles, test IDs, and other stable page attributes.
+* The tests cover workflows across LEGO's live website, so website changes may require locator or test updates.
+* Successful login testing validates navigation to the LEGO identity service because the authentication flow includes MFA.
 
 ## Future Work
 
-Planned additions to expand test coverage:
+Planned additions to expand test coverage and improve the framework:
 
-- Add product search functionality tests
-- Add product page validation tests
-- Add shopping cart tests, including adding items, updating quantities, and removing items
-- Add checkout flow testing up to the payment step
-- Add additional account creation validation scenarios
-- Add more negative test cases for user inputs
-- Improve test isolation and state management for repeated test executions
-- Add CI/CD integration using GitHub Actions
-- Add additional reporting and test artifacts
+* Improve test stability and reduce flaky test behavior
+* Improve test isolation and state management for repeated test executions
+* Add additional account creation validation scenarios
+* Add more negative test cases for user inputs
+* Expand shopping cart coverage
+* Add checkout flow testing up to the payment step
+* Add CI/CD integration using GitHub Actions
+* Add additional reporting and test artifacts
+* Survey pop up closure 
+
